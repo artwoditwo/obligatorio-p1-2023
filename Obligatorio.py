@@ -8,6 +8,8 @@ class Empleado:
             self.salario = salario 
 class prueba:
       ibndio
+
+      sadaasd
 # #MAIN
 # while True:
 #     print("\nIngrese el número de la operación que desea ejecutar:")
