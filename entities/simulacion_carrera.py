@@ -1,25 +1,15 @@
 
 class Simulacion_Carrera:
-    def __init__ (self):
+    def __init__ (self,equipos,lesionados,abandonos,error_pits,penalizados):
 
-        self._carrera=[] #recibir lista
-        self._pilotos_lesionados=[]
-        self._pilotos_abandonos=[]
-        self._pilotos_error_pits=[]
-        self._pilotos_penalizados=[]
+        self._equipos=equipos #recibir lista de todos los equipos desde la variable equipos
+        self._pilotos_lesionados=lesionados
+        self._pilotos_abandonos=abandonos
+        self._pilotos_error_pits=error_pits
+        self._pilotos_penalizados=penalizados
 
 
-    def piloto_lesionado(self,piloto):
-        self._pilotos_lesionados.append(piloto)
-    
-    def piloto_abandona(self,piloto):
-        self._pilotos_abandonos.append(piloto)
-
-    def piloto_error_pit(self,piloto):
-        self._pilotos_error_pits.append(piloto)
-
-    def piloto_penalizado(self,piloto):
-        self._pilotos_penalizados.append(piloto)
+def simular_carrera()
 
     
         
