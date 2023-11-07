@@ -6,8 +6,7 @@ class Empleado:
             self.nacionalidad = nacionalidad 
             self.fecha_nacimiento = fecha_nacimiento
             self.salario = salario 
-class prueba:
-      ibndio
+
 # #MAIN
 # while True:
 #     print("\nIngrese el número de la operación que desea ejecutar:")
