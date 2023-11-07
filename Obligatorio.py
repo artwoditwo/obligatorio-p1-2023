@@ -1,13 +1,10 @@
-class Empleado:
-      def __init__(self, id, nombre, edad, nacionalidad, fecha_nacimiento, salario) -> None:
-            self.id = id 
-            self.nombre = nombre 
-            self.edad = edad 
-            self.nacionalidad = nacionalidad 
-            self.fecha_nacimiento = fecha_nacimiento
-            self.salario = salario 
-class prueba:
-      ibndio
+from entities.empleado import Empleado
+from entities.piloto import Piloto
+from entities.mecanico import Mecanico
+from entities.director_equipo import Director_equipo
+from entities.auto import Auto
+from entities.equipo import Equipo
+
 # #MAIN
 # while True:
 #     print("\nIngrese el número de la operación que desea ejecutar:")
