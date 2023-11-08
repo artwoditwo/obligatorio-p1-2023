@@ -1,8 +1,8 @@
 class Empleado:
       def __init__(self, id, nombre, edad, nacionalidad, fecha_nacimiento, salario):
-            self.id = id 
-            self.nombre = nombre 
-            self.edad = edad 
-            self.nacionalidad = nacionalidad 
-            self.fecha_nacimiento = fecha_nacimiento
-            self.salario = salario 
+            self._id = id 
+            self._nombre = nombre 
+            self._edad = edad 
+            self._nacionalidad = nacionalidad 
+            self._fecha_nacimiento = fecha_nacimiento
+            self._salario = salario 
