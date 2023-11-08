@@ -1,7 +1,10 @@
 import random
 from entities.piloto import Piloto
+from entities.mecanico import Mecanico
+from entities.auto import Auto
+
 class Simulacion_Carrera:
-    def __init__ (self,):
+    def __init__ (self):
 
         self._equipos=[] #recibir lista de todos los equipos desde la variable equipos
         self._pilotos_lesionados=[]
@@ -62,7 +65,8 @@ class Simulacion_Carrera:
 
     def simular_carrera(self):
         corredores=[]
-        corredores_primeras_diez_posiciones=[]
+        corredores_con_puntuacion_final = []
+        lista_ganadores=[]
         for a in self._equipos:
             for b in a:
                 if isinstance(b,Piloto): #cambiar para piloto titular
@@ -72,12 +76,58 @@ class Simulacion_Carrera:
                     
 
         
-        random.shuffle(corredores) #randomiaz el orden de los corredores, el orden desde 0-cantidad de corredores es el orden en que finalizaron
+        #random.shuffle(corredores) #randomiaz el orden de los corredores, el orden desde 0-cantidad de corredores es el orden en que finalizaron
         
+        for i in corredores:
+            if i.nombre in self._pilotos_abandonos:
+                corredores.remove(i)
+        
+        
+        for i in corredores:
 
-        
-        for i in corredores[:10]:
-            corredores_primeras_diez_posiciones.append(i)
+            suma_score_mecanicos=0
+            score_auto=0
+            score_piloto=i.score
+            valor_pits=0
+            valor_penalizacion=0
+
+            
+            
+            if i.nombre in self._pilotos_error_pits:
+                cant_errores_pits = self._pilotos_error_pits.count(i)
+                valor_pits= 5*cant_errores_pits
+            
+            if i.nombre in self._pilotos_penalizados:
+                cant_penalizaciones = self._pilotos_penalizados.count(i)
+                valor_penalizacion = 8*cant_penalizaciones
+            
+            for a in self._equipos:
+                for b in a:
+                    if i==b:
+                        equipo_del_corredor=a
+            
+            for c in equipo_del_corredor:
+                if isinstance(c,Mecanico):
+                    suma_score_mecanicos = suma_score_mecanicos + c.score
+            
+            for c in equipo_del_corredor:
+                if isinstance(c,Auto):
+                    score_auto=c.score
+            
+
+            
+            score_final= suma_score_mecanicos + score_auto + score_piloto - valor_pits - valor_penalizacion
+
+            corredor_con_puntuacion = (score_final, i)
+            corredores_con_puntuacion_final.append(corredor_con_puntuacion)
+            
+        lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0])
+
+        return lista_ganadores
+            
+            
+
+
         
 
     
