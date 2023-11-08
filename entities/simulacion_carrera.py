@@ -144,6 +144,8 @@ class Simulacion_Carrera:
                 puntuacion_posicion=2
             elif i == lista_ganadores[9]:
                 puntuacion_posicion=1
+            else:
+                puntuacion_posicion=0
 
             puntaje=i.puntuacion +puntuacion_posicion
             i.puntuacion=puntaje
