@@ -118,11 +118,36 @@ class Simulacion_Carrera:
             
             score_final= suma_score_mecanicos + score_auto + score_piloto - valor_pits - valor_penalizacion
 
-            corredor_con_puntuacion = (score_final, i)
-            corredores_con_puntuacion_final.append(corredor_con_puntuacion)
+            corredor_con_puntuacion = (score_final, i) 
+            corredores_con_puntuacion_final.append(corredor_con_puntuacion) #guarde el score_final con el corredor
             
-        lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0])
+        lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0]) #lleno la lista con la forma ordenada de las tuplas a partir del score_final
+        
+        for i in lista_ganadores:
+            if i == lista_ganadores[0]:
+                puntuacion_posicion=25
+            elif i == lista_ganadores[1]:
+                puntuacion_posicion=18
+            elif i == lista_ganadores[2]:
+                puntuacion_posicion=15
+            elif i == lista_ganadores[3]:
+                puntuacion_posicion=12
+            elif i == lista_ganadores[4]:
+                puntuacion_posicion=10
+            elif i == lista_ganadores[5]:
+                puntuacion_posicion=8
+            elif i == lista_ganadores[6]:
+                puntuacion_posicion=6
+            elif i == lista_ganadores[7]:
+                puntuacion_posicion=4
+            elif i == lista_ganadores[8]:
+                puntuacion_posicion=2
+            elif i == lista_ganadores[9]:
+                puntuacion_posicion=1
 
+            puntaje=i.puntuacion +puntuacion_posicion
+            i.puntuacion=puntaje
+        
         return lista_ganadores
             
             
