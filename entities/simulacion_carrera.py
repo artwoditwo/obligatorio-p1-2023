@@ -68,10 +68,18 @@ class Simulacion_Carrera:
         corredores_con_puntuacion_final = []
         lista_ganadores=[]
         for a in self._equipos:
-            for b in a:
+            for b in a:     # a seria el equipo y b seria cada empleado dentro de ese equipo
                 if isinstance(b,Piloto): #cambiar para piloto titular
                     if b.reserva == False:
-                        if b not in self._pilotos_lesionados:
+                        if b in self._pilotos_lesionados:
+                            for c in a: #c cumple la misma funcion que b
+                                if c.reserva==True:
+                                    if c in corredores:
+                                        pass
+                                    else:
+                                        corredores.append(c)
+
+                        else:
                             corredores.append(b)
                     
 
@@ -118,7 +126,7 @@ class Simulacion_Carrera:
             score_final= suma_score_mecanicos + score_auto + score_piloto - valor_pits - valor_penalizacion
 
             corredor_con_puntuacion = (score_final, i) 
-            corredores_con_puntuacion_final.append(corredor_con_puntuacion) #guarde el score_final con el corredor
+            corredores_con_puntuacion_final.append(corredor_con_puntuacion) #guarde el score_final con el corredor en una tupla
             
         lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0]) #lleno la lista con la forma ordenada de las tuplas a partir del score_final
         
