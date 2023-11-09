@@ -1,12 +1,11 @@
 from empleado import Empleado
 class Piloto(Empleado):
-      def __init__(self, id, nombre, edad, nacionalidad, fecha_nacimiento, salario, score, numero_auto, puntaje_campeonato, reserva) -> None:
-            super().__init__(id, nombre, edad, nacionalidad, fecha_nacimiento, salario)
+      def __init__(self, ci, nombre, edad, nacionalidad, fecha_nacimiento, salario, score, numero_auto, reserva) -> None:
+            super().__init__(ci, nombre, edad, nacionalidad, fecha_nacimiento, salario)
             self._score = score
             self._numero_auto = numero_auto
-            self._puntaje_campeonato = puntaje_campeonato
             self._reserva = reserva #True or False
-            self._score_total_campeonato = 0
+            self._puntaje_campeonato = 0
             self._puntuacion=None
 
             #nico luego agrega vos el getter y setter para los demas
@@ -15,6 +14,14 @@ class Piloto(Empleado):
       @property
       def score(self):
             return self._score
+      
+      @property
+      def numero_auto(self):
+            return self._numero_auto
+      
+      @numero_auto.setter
+      def numero_auto(self,numero_auto):
+            self._numero_auto=numero_auto
 
       @property
       def reserva(self):
@@ -25,12 +32,12 @@ class Piloto(Empleado):
             self._reserva = reserva
 
       @property
-      def score_total_campeonato(self):
-            return self._score_total_campeonato
+      def puntaje_campeonato(self):
+            return self._puntaje_campeonato
 
-      @score_total_campeonato.setter
-      def score_total_campeonato(self, score_total_campeonato):
-            self._score_total_campeonato = score_total_campeonato
+      @puntaje_campeonato.setter
+      def puntaje_campeonato(self, puntaje_campeonato):
+            self._puntaje_campeonato = puntaje_campeonato
 
       @property
       def puntuacion(self):

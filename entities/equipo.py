@@ -1,5 +1,5 @@
 class Equipo:
-    def __init__(self, nombre):
+    def __init__(self, nombre,empleados,auto):
         self._nombre = nombre
-        self._empleados = []
-        self._auto = None
+        self._empleados = empleados
+        self._auto = auto

@@ -4,13 +4,13 @@ from entities.mecanico import Mecanico
 from entities.auto import Auto
 
 class Simulacion_Carrera:
-    def __init__ (self):
+    def __init__ (self,equipos,lesionados,abandonos,error_pits,penalizados):
 
-        self._equipos=[] #recibir lista de todos los equipos desde la variable equipos
-        self._pilotos_lesionados=[]
-        self._pilotos_abandonos=[]
-        self._pilotos_error_pits=[]
-        self._pilotos_penalizados=[]
+        self._equipos=equipos #recibir lista de todos los equipos desde la variable equipos
+        self._pilotos_lesionados=lesionados
+        self._pilotos_abandonos=abandonos
+        self._pilotos_error_pits=error_pits
+        self._pilotos_penalizados=penalizados
 
         # Getter para equipos
     @property
@@ -76,10 +76,9 @@ class Simulacion_Carrera:
                     
 
         
-        #random.shuffle(corredores) #randomiaz el orden de los corredores, el orden desde 0-cantidad de corredores es el orden en que finalizaron
         
         for i in corredores:
-            if i.nombre in self._pilotos_abandonos:
+            if i.ci in self._pilotos_abandonos:
                 corredores.remove(i)
         
         
@@ -93,11 +92,11 @@ class Simulacion_Carrera:
 
             
             
-            if i.nombre in self._pilotos_error_pits:
+            if i.ci in self._pilotos_error_pits:
                 cant_errores_pits = self._pilotos_error_pits.count(i)
                 valor_pits= 5*cant_errores_pits
             
-            if i.nombre in self._pilotos_penalizados:
+            if i.ci in self._pilotos_penalizados:
                 cant_penalizaciones = self._pilotos_penalizados.count(i)
                 valor_penalizacion = 8*cant_penalizaciones
             
