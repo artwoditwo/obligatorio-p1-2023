@@ -1,4 +1,3 @@
-from entities.empleado import Empleado
 from entities.piloto import Piloto
 from entities.mecanico import Mecanico
 from entities.director_equipo import Director_equipo
@@ -10,6 +9,7 @@ class Menu():
         self._lista_empleados=[]
         self._lista_auto=[]
         self._lista_empleados=[]
+
 
 
 
