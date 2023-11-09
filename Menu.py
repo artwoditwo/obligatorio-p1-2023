@@ -10,5 +10,13 @@ class Menu():
         self._lista_empleados=[]
         self._lista_auto=[]
         self._lista_empleados=[]
+
+
+
+
+
+
+
+
         
         
