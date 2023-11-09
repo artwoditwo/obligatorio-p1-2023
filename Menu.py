@@ -3,6 +3,7 @@ from entities.mecanico import Mecanico
 from entities.director_equipo import Director_equipo
 from entities.auto import Auto
 from entities.equipo import Equipo
+from entities.simulacion_carrera import Simulacion_Carrera
 
 class Menu():
     def _init__(self):
