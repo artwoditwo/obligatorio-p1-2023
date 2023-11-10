@@ -1,4 +1,4 @@
-from empleado import Empleado
+from entities.empleado import Empleado
 class Piloto(Empleado):
       def __init__(self, ci, nombre, edad, nacionalidad, fecha_nacimiento, salario, score, numero_auto, reserva) -> None:
             super().__init__(ci, nombre, edad, nacionalidad, fecha_nacimiento, salario)
@@ -8,7 +8,7 @@ class Piloto(Empleado):
             self._puntaje_campeonato = 0
             self._puntuacion=None
 
-            #nico luego agrega vos el getter y setter para los demas
+            
 
 
       @property

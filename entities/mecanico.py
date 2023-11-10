@@ -1,4 +1,4 @@
-from empleado import Empleado
+from entities.empleado import Empleado
 class Mecanico(Empleado):
     def __init__(self, ci, nombre, edad, nacionalidad, fecha_nacimiento, salario, score):
         super().__init__(ci, nombre, edad, nacionalidad, fecha_nacimiento, salario)

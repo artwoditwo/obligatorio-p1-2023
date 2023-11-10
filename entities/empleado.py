@@ -7,7 +7,7 @@ class Empleado:
             self._fecha_nacimiento = fecha_nacimiento
             self._salario = salario 
 
-      #nico crea los demas getters
+      
 
       @property
       def ci(self):
@@ -16,7 +16,7 @@ class Empleado:
       @property
       def nombre(self):
             return self._nombre
-
+      
       @nombre.setter
       def nombre(self, nombre):
             self._nombre = nombre
