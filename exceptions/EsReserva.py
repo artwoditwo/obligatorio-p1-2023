@@ -1,0 +1,2 @@
+class EsReserva(Exception):
+        pass

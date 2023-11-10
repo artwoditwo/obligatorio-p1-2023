@@ -1,0 +1,2 @@
+class CargoIncorrecto(Exception):
+        pass

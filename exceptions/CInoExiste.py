@@ -1,0 +1,2 @@
+class CInoExiste(Exception):
+        pass
