@@ -37,8 +37,8 @@ class Menu():
                 if nacionalidad == "" or nacionalidad.isdigit():
                     raise InvalidDatos("Tiene que elegir una nacionalidad correcta")
                 
-                salario = float(input("Ingrese salario: "))
-                if salario.isalpha() or salario <= 0 or salario == "": ## CRASHEA ##
+                salario = input("Ingrese salario: ")
+                if salario <= 0 or salario == "": ## CRASHEA ##
                     raise ValueError("El salario debe ser mayor a 0")    
 
                 print("Ingrese cargo:")
@@ -77,13 +77,8 @@ class Menu():
                 print("Empleado cargado con éxito")
  #########################################################################       
                 
-            except InvalidDatos as e:
+            except InvalidDatos or ValueError or InvalidFechaNacimiento as e:
                         print(f"Error de validación: {e}")
-            except ValueError as e:
-                print(f"Error de validación: {e}")
-            except InvalidFechaNacimiento as e:
-                print(f"Error de validación: {e}")
-        # SE PUEDE UTILIZAR UN SOLO EXCEPT? #
      
     def alta_auto(self):
         try:
