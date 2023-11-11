@@ -1,0 +1,2 @@
+class InvalidFechaNacimiento (Exception):
+        pass
