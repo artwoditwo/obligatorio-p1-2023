@@ -11,7 +11,7 @@ class Empleado:
 
       @property
       def ci(self):
-            return self.ci
+            return self._ci
 
       @property
       def nombre(self):

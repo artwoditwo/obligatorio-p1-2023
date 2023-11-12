@@ -1,6 +1,6 @@
 from entities.empleado import Empleado
 class Piloto(Empleado):
-      def __init__(self, ci, nombre, edad, nacionalidad, fecha_nacimiento, salario, score, numero_auto, reserva) -> None:
+      def __init__(self, ci, nombre, edad, nacionalidad, fecha_nacimiento, salario, score, numero_auto, reserva):
             super().__init__(ci, nombre, edad, nacionalidad, fecha_nacimiento, salario)
             self._score = score
             self._numero_auto = numero_auto

@@ -1,0 +1,3 @@
+class EntidadExiste(Exception):
+        
+        pass
