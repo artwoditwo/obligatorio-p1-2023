@@ -1,3 +1,4 @@
+import re
 from entities.piloto import Piloto
 from entities.mecanico import Mecanico
 from entities.director_equipo import Director_equipo
@@ -10,10 +11,9 @@ from exceptions.CargoIncorrecto import CargoIncorrecto
 from exceptions.EsReserva import EsReserva 
 from exceptions.ValueError import ValueError
 from exceptions.InvalidFechaNacimiento import InvalidFechaNacimiento
-import re
 
 class Menu():
-    def _init__(self):
+    def __init__(self):
         self._lista_empleados=[]
         self._lista_auto=[]
         self._lista_equipos=[]
@@ -38,7 +38,9 @@ class Menu():
                     raise InvalidDatos("Tiene que elegir una nacionalidad correcta")
                 
                 salario = input("Ingrese salario: ")
-                if salario <= 0 or salario == "": ## CRASHEA ##
+                if salario == '' or salario.isalpha():
+                     raise ValueError("lo ingresado no son numeros") 
+                if salario <= 0: 
                     raise ValueError("El salario debe ser mayor a 0")    
 
                 print("Ingrese cargo:")
@@ -77,28 +79,37 @@ class Menu():
                 print("Empleado cargado con éxito")
  #########################################################################       
                 
-            except InvalidDatos or ValueError or InvalidFechaNacimiento as e:
+            except (InvalidDatos, ValueError, InvalidFechaNacimiento) as e:
                         print(f"Error de validación: {e}")
      
     def alta_auto(self):
+
         try:
             modelo = input("Ingrese modelo: ")
             if modelo == "":
                  raise InvalidDatos("El campo se encuentra vacío")
             
             ano = input("Ingrese año: ")
-            if ano == "" or ano.isalpha() or len(ano) != 4:
+            if ano == "" or ano.isalpha() :
+                raise InvalidDatos("lo ingresado no es un numero")
+            if len(ano) != 4:
                 raise InvalidDatos("Ingrese un año correcto")
+            
+            
+            score = int(input("Ingrese score(1-99): "))
+            
+            if score > 99 or score < 1:  
+                raise InvalidDatos("Ingrese un digito entre 1 y 99")
 
-            score = input("Ingrese score(1-99): ")
-            if score.isalpha() or score == "" or score > 99 or score < 1:  ## CRASHEA ##
-                 raise InvalidDatos("Ingrese un digito entre 1 y 99")
-
+            
             auto = Auto(modelo, ano, score)
             self._lista_auto.append(auto)
             print("Auto cargado con éxito.")
-        except InvalidDatos as e:
+            
+        except (ValueError,InvalidDatos) as e:
             print(f"Error de validación: {e}")
+
+        
     
     def alta_equipo(self):
         empleados = []
