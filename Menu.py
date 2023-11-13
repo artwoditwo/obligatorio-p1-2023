@@ -23,7 +23,7 @@ class Menu():
             
             try: 
                 
-                ci = input("Ingrese cedula: ")
+                ci = input("Ingrese cédula: ")
                 if ci.isalpha() or len(ci) != 8 or ci == "":
                     raise ValueError("La cédula debe contener 8 dígitos")
                 
@@ -33,10 +33,10 @@ class Menu():
                 
                 edad_input = input("Ingrese la edad: ")
                 if edad_input == "" or not edad_input.isdigit():
-                    raise InvalidDatos("ingrese un salario correcto")
+                    raise InvalidDatos("Lo ingresado no es un digito")
                 edad = int(edad_input)
                 if edad <= 18: 
-                    raise ValueError("ingrese una edad mayor a 18")
+                    raise ValueError("Ingrese una edad mayor a 18")
                     
 
                 fecha_nacimiento = input("Ingrese fecha de nacimiento (DD/MM/AAAA): ")
@@ -49,8 +49,7 @@ class Menu():
                 
                 salario_input = input("Ingrese salario: ")
                 if salario_input == "" or not salario_input.isdigit():
-                    raise InvalidDatos("ingrese un salario correcto")
-
+                    raise InvalidDatos("Ingrese un salario correcto")
                 salario = int(salario_input)
                 if salario <= 0: 
                     raise ValueError("El salario debe ser mayor a 0")    
@@ -69,12 +68,12 @@ class Menu():
                     score=int(score_input)
                     
                     if score > 99 or score < 1:
-                        raise InvalidDatos("ingrese un numero dentro del rango")
+                        raise InvalidDatos("Ingrese un numero dentro del rango")
                         
                     else:
                         numero_auto_input = input("Ingrese el numero de auto: ")
                         if numero_auto_input == "" or not numero_auto_input.isdigit():
-                            raise InvalidDatos("lo ingresado no es un numero")
+                            raise InvalidDatos("Lo ingresado no es un numero")
                         numero_auto=int(numero_auto_input)
                         es_reserva = False 
 
@@ -89,7 +88,7 @@ class Menu():
                     score=int(score_input)
 
                     if score > 99 or score < 1:
-                        raise InvalidDatos
+                        raise InvalidDatos("Ingrese un numero dentro del rango")
                     else:
                         empleado = Mecanico(ci, nombre,edad, fecha_nacimiento, nacionalidad, salario, score)
                     
@@ -101,7 +100,7 @@ class Menu():
                 
                 for _ in self._lista_empleados:
                     if _.ci == ci:
-                        raise EntidadExiste("La CI igresada ya le pertenece a otro empleado")
+                        raise EntidadExiste("La CI ingresada ya le pertenece a otro empleado")
                 
                 self._lista_empleados.append(empleado)
                 print("Empleado cargado con éxito")
@@ -118,8 +117,8 @@ class Menu():
                  raise InvalidDatos("El campo se encuentra vacío")
             
             ano = input("Ingrese año: ")
-            if ano == "" or ano.isalpha() :
-                raise InvalidDatos("lo ingresado no es un numero")
+            if ano == "" or ano.isalpha():
+                raise InvalidDatos("Lo ingresado no es un numero")
             if len(ano) != 4:
                 raise InvalidDatos("Ingrese un año correcto")
             
@@ -150,6 +149,8 @@ class Menu():
         empleados = []
         try:
             nombre_equipo = input("Ingrese nombre del equipo: ")
+            if nombre_equipo == "":
+                raise ValueError("Ingrese un nombre")
             for _ in self._lista_equipos:
                 if _.nombre == nombre_equipo:
                     raise EntidadExiste("El nombre ingresado ya le pertenece a un equipo")
@@ -174,11 +175,11 @@ class Menu():
                                     empleados.append(empleado) #solia ser cedula, pero ahora append a la persona con esa cedula
                                 break
                             else:
-                                raise EsReserva("El piloto ingresado es un piloto de Reserva")
+                                raise EsReserva("El piloto ingresado es un piloto de reserva")
                         else:
-                            raise CargoIncorrecto("El cargo del empleado ingresado no es de Piloto")
+                            raise CargoIncorrecto("El cargo del empleado ingresado no es de piloto")
                 else:
-                    raise CInoExiste("La CI ingresada no le pertenece a ningun empleado")
+                    raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
                 
                             
             cedula = input("Agregue cedula del empleado reserva: ")
@@ -192,11 +193,11 @@ class Menu():
                                 empleados.append(empleado)
                             break
                         else:
-                                raise EsReserva("El piloto ingresado es un piloto Titular")
+                                raise EsReserva("El piloto ingresado es un piloto titular")
                     else:
-                            raise CargoIncorrecto("El cargo del empleado ingresado no es de Piloto")
+                            raise CargoIncorrecto("El cargo del empleado ingresado no es de piloto")
             else:
-                raise CInoExiste("La CI ingresada no le pertenece a ningun empleado")
+                raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
                 
             cedula = input("Agregue cedula del jefe de equipo: ")
             for empleado in self._lista_empleados:
@@ -208,9 +209,9 @@ class Menu():
                             empleados.append(empleado)
                         break
                     else:
-                            raise CargoIncorrecto("El cargo del empleado ingresado no es de Jefe")
+                            raise CargoIncorrecto("El cargo del empleado ingresado no es de jefe")
             else:
-                    raise CInoExiste("La CI ingresada no le pertenece a ningun empleado")
+                    raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
                 
             for a in range(0,8):
                 cedula = input("Agregue cedula del mecanico: ")
@@ -223,9 +224,9 @@ class Menu():
                                 empleados.append(empleado)
                             break
                         else:
-                            raise CargoIncorrecto("El cargo del empleado ingresado no es de Mecanico")
+                            raise CargoIncorrecto("El cargo del empleado ingresado no es de mecánico")
                 else:
-                        raise CInoExiste("La CI ingresada no le pertenece a ningun empleado")
+                        raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
 
         except (ValueError,CInoExiste,CargoIncorrecto,EsReserva,EntidadExiste) as e:
             print(f"Error de validación: {e}")
@@ -251,14 +252,14 @@ class Menu():
         employee2 = Piloto("22222222", "Piloto2", 28, "02/02/1995", "Nacionalidad2", 55000, 85, 2, False)
         employee3 = Piloto("33333333", "Piloto3", 22, "03/03/2000", "Nacionalidad3", 60000, 88, 3, True)
         employee4 = Director_equipo("44444444", "Jefe1", 35, "04/04/1987", "Nacionalidad4", 70000)
-        employee5 = Mecanico("55555555", "Mecanico1", 30, "05/05/1992", "Nacionalidad5", 40000, 75)
-        employee6 = Mecanico("66666666", "Mecanico2", 26, "06/06/1996", "Nacionalidad6", 45000, 78)
-        employee7 = Mecanico("77777777", "Mecanico3", 29, "07/07/1993", "Nacionalidad7", 42000, 80)
-        employee8 = Mecanico("88888888", "Mecanico4", 32, "08/08/1990", "Nacionalidad8", 48000, 82)
-        employee9 = Mecanico("99999999", "Mecanico5", 28, "09/09/1994", "Nacionalidad9", 43000, 79)
-        employee10 = Mecanico("10101010", "Mecanico6", 25, "10/10/1997", "Nacionalidad10", 41000, 76)
-        employee11 = Mecanico("11111112", "Mecanico7", 27, "11/11/1995", "Nacionalidad11", 44000, 77)
-        employee12 = Mecanico("12121212", "Mecanico8", 31, "12/12/1989", "Nacionalidad12", 46000, 81)
+        employee5 = Mecanico("55555555", "Mecánico1", 30, "05/05/1992", "Nacionalidad5", 40000, 75)
+        employee6 = Mecanico("66666666", "Mecánico2", 26, "06/06/1996", "Nacionalidad6", 45000, 78)
+        employee7 = Mecanico("77777777", "Mecánico3", 29, "07/07/1993", "Nacionalidad7", 42000, 80)
+        employee8 = Mecanico("88888888", "Mecánico4", 32, "08/08/1990", "Nacionalidad8", 48000, 82)
+        employee9 = Mecanico("99999999", "Mecánico5", 28, "09/09/1994", "Nacionalidad9", 43000, 79)
+        employee10 = Mecanico("10101010", "Mecánico6", 25, "10/10/1997", "Nacionalidad10", 41000, 76)
+        employee11 = Mecanico("11111112", "Mecánico7", 27, "11/11/1995", "Nacionalidad11", 44000, 77)
+        employee12 = Mecanico("12121212", "Mecánico8", 31, "12/12/1989", "Nacionalidad12", 46000, 81)
 
         # Adding employees to the menu
         
