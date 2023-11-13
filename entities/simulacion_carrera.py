@@ -86,7 +86,7 @@ class Simulacion_Carrera:
         
         
         for i in corredores:
-            if i.ci in self._pilotos_abandonos:
+            if i.numero_auto in self._pilotos_abandonos:
                 corredores.remove(i)
         
         
@@ -100,11 +100,11 @@ class Simulacion_Carrera:
 
             
             
-            if i.ci in self._pilotos_error_pits:
+            if i.numero_auto in self._pilotos_error_pits:
                 cant_errores_pits = self._pilotos_error_pits.count(i)
                 valor_pits= 5*cant_errores_pits
             
-            if i.ci in self._pilotos_penalizados:
+            if i.numero_auto in self._pilotos_penalizados:
                 cant_penalizaciones = self._pilotos_penalizados.count(i)
                 valor_penalizacion = 8*cant_penalizaciones
             

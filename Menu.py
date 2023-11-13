@@ -163,12 +163,15 @@ class Menu():
             
             
             for a in range(0,2):
-                cedula = input("Agregue cedula del empleado titular: ")
-                for a in self._lista_empleados:
-                    if a.ci == cedula:
-                        if isinstance(a,Piloto):
-                            if a.reserva == False:
-                                empleados.append(cedula)
+                cedula = input("Agregue cedula del piloto titular: ")
+                for empleado in self._lista_empleados:
+                    if empleado.ci == cedula:
+                        if isinstance(empleado,Piloto):
+                            if empleado.reserva == False:
+                                if cedula in empleados:
+                                    raise EntidadExiste("ERROR: Esa Persona ya ah sido ingresada en el equipo")
+                                else:
+                                    empleados.append(empleado) #solia ser cedula, pero ahora append a la persona con esa cedula
                                 break
                             else:
                                 raise EsReserva("El piloto ingresado es un piloto de Reserva")
@@ -179,11 +182,14 @@ class Menu():
                 
                             
             cedula = input("Agregue cedula del empleado reserva: ")
-            for a in self._lista_empleados:
-                if a.ci == cedula:
-                    if isinstance(a,Piloto):
-                        if a.reserva == True:
-                            empleados.append(cedula)
+            for empleado in self._lista_empleados:
+                if empleado.ci == cedula:
+                    if isinstance(empleado,Piloto):
+                        if empleado.reserva == True:
+                            if cedula in empleados:
+                                raise EntidadExiste("ERROR: Esa Persona ya ah sido ingresada en el equipo")
+                            else:
+                                empleados.append(empleado)
                             break
                         else:
                                 raise EsReserva("El piloto ingresado es un piloto Titular")
@@ -193,10 +199,13 @@ class Menu():
                 raise CInoExiste("La CI ingresada no le pertenece a ningun empleado")
                 
             cedula = input("Agregue cedula del jefe de equipo: ")
-            for a in self._lista_empleados:
-                if a.ci == cedula:
-                    if isinstance(a,Director_equipo):
-                        empleados.append(cedula)
+            for empleado in self._lista_empleados:
+                if empleado.ci == cedula:
+                    if isinstance(empleado,Director_equipo):
+                        if cedula in empleados:
+                            raise EntidadExiste("ERROR: Esa Persona ya ah sido ingresada en el equipo")
+                        else:
+                            empleados.append(empleado)
                         break
                     else:
                             raise CargoIncorrecto("El cargo del empleado ingresado no es de Jefe")
@@ -205,10 +214,13 @@ class Menu():
                 
             for a in range(0,8):
                 cedula = input("Agregue cedula del mecanico: ")
-                for a in self._lista_empleados:
-                    if a.ci == cedula:
-                        if isinstance(a,Mecanico):
-                            empleados.append(cedula)
+                for empleado in self._lista_empleados:
+                    if empleado.ci == cedula:
+                        if isinstance(empleado,Mecanico):
+                            if cedula in empleados:
+                                raise EntidadExiste("ERROR: Esa Persona ya ah sido ingresada en el equipo")
+                            else:
+                                empleados.append(empleado)
                             break
                         else:
                             raise CargoIncorrecto("El cargo del empleado ingresado no es de Mecanico")
@@ -221,15 +233,23 @@ class Menu():
         equipo = Equipo(nombre_equipo,empleados,modelo_auto)
 
         self._lista_equipos.append(equipo)
+        print("Equipo ingresado con excito!")
 
-    
+    def Simulacion_Carrera(self):
+        nro_auto_pilotos_lesionados=[]
+        nro_auto_pilotos_abandonaron=[]
+        nro_auto_pilotos_error_pits=[]
+        nro_auto_pilotos_penalidad=[]
+
+        
+
 
 ######################### NO TOCAR ########################
     def ejecutar_menu(self):
             # Creating 12 employees for testing
-        employee1 = Piloto("11111111", "Piloto1", 25, "01/01/1998", "Nacionalidad1", 50000, 90, 1, True)
-        employee2 = Piloto("22222222", "Piloto2", 28, "02/02/1995", "Nacionalidad2", 55000, 85, 2, True)
-        employee3 = Piloto("33333333", "Piloto3", 22, "03/03/2000", "Nacionalidad3", 60000, 88, 3, False)
+        employee1 = Piloto("11111111", "Piloto1", 25, "01/01/1998", "Nacionalidad1", 50000, 90, 1, False)
+        employee2 = Piloto("22222222", "Piloto2", 28, "02/02/1995", "Nacionalidad2", 55000, 85, 2, False)
+        employee3 = Piloto("33333333", "Piloto3", 22, "03/03/2000", "Nacionalidad3", 60000, 88, 3, True)
         employee4 = Director_equipo("44444444", "Jefe1", 35, "04/04/1987", "Nacionalidad4", 70000)
         employee5 = Mecanico("55555555", "Mecanico1", 30, "05/05/1992", "Nacionalidad5", 40000, 75)
         employee6 = Mecanico("66666666", "Mecanico2", 26, "06/06/1996", "Nacionalidad6", 45000, 78)
@@ -241,11 +261,18 @@ class Menu():
         employee12 = Mecanico("12121212", "Mecanico8", 31, "12/12/1989", "Nacionalidad12", 46000, 81)
 
         # Adding employees to the menu
-        menu = Menu()
-        menu._lista_empleados.extend([employee1, employee2, employee3, employee4, employee5, employee6,
+        
+        self._lista_empleados.extend([employee1, employee2, employee3, employee4, employee5, employee6,
                                     employee7, employee8, employee9, employee10, employee11, employee12])
-    
-
+        #auto for test
+        auto = Auto("fiat",1234,55)
+        self._lista_auto.append(auto)
+        # equipo for test
+        lista_empleados=[employee1,employee2,employee3,employee4,employee5,employee6,employee7,
+                         employee8,employee9,employee10,employee11,employee12]
+        
+        equipo=Equipo("Arturo",lista_empleados,"fiat")
+        self._lista_equipos.append(equipo)
 
 
 
