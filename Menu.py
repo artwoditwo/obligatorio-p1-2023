@@ -164,13 +164,13 @@ class Menu():
             
             
             for a in range(0,2):
-                cedula = input("Agregue cedula del piloto titular: ")
+                cedula = input("Agregue cédula del piloto titular: ")
                 for empleado in self._lista_empleados:
                     if empleado.ci == cedula:
                         if isinstance(empleado,Piloto):
                             if empleado.reserva == False:
                                 if cedula in empleados:
-                                    raise EntidadExiste("ERROR: Esa Persona ya ah sido ingresada en el equipo")
+                                    raise EntidadExiste("ERROR: Esa Persona ya ha sido ingresada en el equipo")
                                 else:
                                     empleados.append(empleado) #solia ser cedula, pero ahora append a la persona con esa cedula
                                 break
@@ -182,13 +182,13 @@ class Menu():
                     raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
                 
                             
-            cedula = input("Agregue cedula del empleado reserva: ")
+            cedula = input("Agregue cédula del empleado reserva: ")
             for empleado in self._lista_empleados:
                 if empleado.ci == cedula:
                     if isinstance(empleado,Piloto):
                         if empleado.reserva == True:
                             if cedula in empleados:
-                                raise EntidadExiste("ERROR: Esa Persona ya ah sido ingresada en el equipo")
+                                raise EntidadExiste("ERROR: Esa Persona ya ha sido ingresada en el equipo")
                             else:
                                 empleados.append(empleado)
                             break
@@ -199,12 +199,12 @@ class Menu():
             else:
                 raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
                 
-            cedula = input("Agregue cedula del jefe de equipo: ")
+            cedula = input("Agregue cédula del jefe de equipo: ")
             for empleado in self._lista_empleados:
                 if empleado.ci == cedula:
                     if isinstance(empleado,Director_equipo):
                         if cedula in empleados:
-                            raise EntidadExiste("ERROR: Esa Persona ya ah sido ingresada en el equipo")
+                            raise EntidadExiste("ERROR: Esa Persona ya ha sido ingresada en el equipo")
                         else:
                             empleados.append(empleado)
                         break
@@ -214,7 +214,7 @@ class Menu():
                     raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
                 
             for a in range(0,8):
-                cedula = input("Agregue cedula del mecanico: ")
+                cedula = input("Agregue cédula del mecanico: ")
                 for empleado in self._lista_empleados:
                     if empleado.ci == cedula:
                         if isinstance(empleado,Mecanico):
@@ -228,7 +228,7 @@ class Menu():
                 else:
                         raise CInoExiste("La CI ingresada no le pertenece a ningún empleado")
 
-        except (ValueError,CInoExiste,CargoIncorrecto,EsReserva,EntidadExiste) as e:
+        except (CInoExiste,CargoIncorrecto,EsReserva,EntidadExiste) as e:
             print(f"Error de validación: {e}")
 
         equipo = Equipo(nombre_equipo,empleados,modelo_auto)
