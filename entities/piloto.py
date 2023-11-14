@@ -6,7 +6,7 @@ class Piloto(Empleado):
             self._numero_auto = numero_auto
             self._reserva = reserva #True or False
             self._puntaje_campeonato = 0
-            self._puntuacion=None
+            self._puntuacion=0
 
             
 

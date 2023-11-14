@@ -254,7 +254,7 @@ class Menu():
                 try:
                     input_nro_auto = input("Ingrese el número del auto del piloto: ")
                     if input_nro_auto == "" or not input_nro_auto.isdigit():
-                        raise InvalidDatos("Ingrese un salario correcto")
+                        raise InvalidDatos("Ingrese un nro correcto")
                     nro_auto = int(input_nro_auto)
                     for a in self._lista_empleados:
                         if a.numero_auto == nro_auto:
@@ -269,7 +269,7 @@ class Menu():
                 try:
                     input_nro_auto = input("Ingrese el número del auto del piloto: ")
                     if input_nro_auto == "" or not input_nro_auto.isdigit():
-                        raise InvalidDatos("Ingrese un salario correcto")
+                        raise InvalidDatos("Ingrese un nro correcto")
                     nro_auto = int(input_nro_auto)
                     for a in self._lista_empleados:
                         if a.numero_auto == nro_auto:
@@ -285,7 +285,7 @@ class Menu():
                 try:
                     nro_auto = input("Ingrese el número del auto del piloto: ")
                     if input_nro_auto == "" or not input_nro_auto.isdigit():
-                        raise InvalidDatos("Ingrese un salario correcto")
+                        raise InvalidDatos("Ingrese un nro correcto")
                     nro_auto = int(input_nro_auto)
                     for a in self._lista_empleados:
                         if a.numero_auto == nro_auto:
@@ -300,7 +300,7 @@ class Menu():
                 try:
                     nro_auto = input("Ingrese el número del auto del piloto: ")
                     if input_nro_auto == "" or not input_nro_auto.isdigit():
-                        raise InvalidDatos("Ingrese un salario correcto")
+                        raise InvalidDatos("Ingrese un nro correcto")
                     nro_auto = int(input_nro_auto)
                     for a in self._lista_empleados:
                         if a.numero_auto == nro_auto:
@@ -316,16 +316,16 @@ class Menu():
                 corredores_con_puntuacion_final = []
                 lista_ganadores=[]
                 for a in self._lista_equipos:
-                    for b in a:     # a seria el equipo y b seria cada empleado dentro de ese equipo
-                        if isinstance(b,Piloto): #cambiar para piloto titular
-                            if b.reserva == False:
-                                if b in nro_auto_pilotos_lesionados:
-                                    for c in a: #c cumple la misma funcion que b
-                                        if c.reserva==True:
-                                            if c in corredores:
-                                                pass
-                                            else:
+                    for b in a.empleados: # a seria el equipo y b seria cada empleado dentro de ese equipo
+                        if isinstance(b,Piloto): #ver que sea piloto
+                            if b.reserva == False: #ver que sea titular
+                                if b in nro_auto_pilotos_lesionados: #ver que no este lesionado
+                                    for c in a.empleados: #c cumple la misma funcion que b
+                                        if c.reserva==True: #agarrar al que sea reserva
+                                            if c not in corredores: #esto para fijarme que la reserva no se encuentra ya en carrera en caso de que los dos titulares esten lesionados
                                                 corredores.append(c)
+                                            
+                                                
 
                                 else:
                                     corredores.append(b)
@@ -357,11 +357,11 @@ class Menu():
                         valor_penalizacion = 8*cant_penalizaciones
                     
                     for a in self._lista_equipos:
-                        for b in a:
+                        for b in a.empleados:
                             if i==b:
                                 equipo_del_corredor=a
                     
-                    for c in equipo_del_corredor:
+                    for c in equipo_del_corredor.empleados:
                         if isinstance(c,Mecanico):
                             suma_score_mecanicos = suma_score_mecanicos + c.score
                     
@@ -376,36 +376,42 @@ class Menu():
                     corredor_con_puntuacion = (score_final, i) 
                     corredores_con_puntuacion_final.append(corredor_con_puntuacion) #guarde el score_final con el corredor en una tupla
                     
-                lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0]) #lleno la lista con la forma ordenada de las tuplas a partir del score_final
+                lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0], reverse=True) #lleno la lista con la forma ordenada descendente de las tuplas a partir del score_final
                 
-                for i in lista_ganadores:
-                    if i == lista_ganadores[0]:
-                        puntuacion_posicion=25
-                    elif i == lista_ganadores[1]:
-                        puntuacion_posicion=18
-                    elif i == lista_ganadores[2]:
-                        puntuacion_posicion=15
-                    elif i == lista_ganadores[3]:
-                        puntuacion_posicion=12
-                    elif i == lista_ganadores[4]:
-                        puntuacion_posicion=10
-                    elif i == lista_ganadores[5]:
-                        puntuacion_posicion=8
-                    elif i == lista_ganadores[6]:
-                        puntuacion_posicion=6
-                    elif i == lista_ganadores[7]:
-                        puntuacion_posicion=4
-                    elif i == lista_ganadores[8]:
-                        puntuacion_posicion=2
-                    elif i == lista_ganadores[9]:
-                        puntuacion_posicion=1
+                for score, piloto in lista_ganadores:
+                    if piloto == lista_ganadores[0][1]:
+                        puntuacion_posicion = 25
+                    elif piloto == lista_ganadores[1][1]:
+                        puntuacion_posicion = 18
+                    elif piloto == lista_ganadores[2][1]:
+                        puntuacion_posicion = 15
+                    elif piloto == lista_ganadores[3][1]:
+                        puntuacion_posicion = 12
+                    elif piloto == lista_ganadores[4][1]:
+                        puntuacion_posicion = 10
+                    elif piloto == lista_ganadores[5][1]:
+                        puntuacion_posicion = 8
+                    elif piloto == lista_ganadores[6][1]:
+                        puntuacion_posicion = 6
+                    elif piloto == lista_ganadores[7][1]:
+                        puntuacion_posicion = 4
+                    elif piloto == lista_ganadores[8][1]:
+                        puntuacion_posicion = 2
+                    elif piloto == lista_ganadores[9][1]:
+                        puntuacion_posicion = 1
                     else:
-                        puntuacion_posicion=0
+                        puntuacion_posicion = 0
 
-                    puntaje=i.puntuacion +puntuacion_posicion
-                    i.puntuacion=puntaje
+                    puntaje = piloto.puntuacion + puntuacion_posicion
+                    piloto.puntuacion = puntaje
+
+
                 
-                print(lista_ganadores) 
+                position = 0
+
+                for score_final, piloto in lista_ganadores:
+                    position += 1
+                    print(f"Pocicion: {position},{piloto.nombre}, Score Final: {score_final}")
 
             elif seleccion == "6":
                 break
