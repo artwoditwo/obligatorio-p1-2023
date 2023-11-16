@@ -419,8 +419,81 @@ class Menu():
 
             elif seleccion == "6":
                 break
+
+
+
+            
+        
+    def realizar_consultas(self):
+        while True:
+            print("\nIngrese el número de la operación que desea ejecutar:")
+            print("1 - Top 10 pilotos con más puntos en el campeonato")
+            print("2 - Resumen Campeonato de constructores")
+            print("3 - Top 5 Pilotos mejores pago")
+            print("4 - Top 3 pilotos más habilidosos")
+            print("5 - Retornar jefes de equipo")
+            print("6 - volver al menu")
+            opcion = input(">>>")
+
+            if opcion == "1":
+                    
+                pilotos = [empleado for empleado in self._lista_empleados if isinstance(empleado, Piloto)]
+                sorted_pilotos = sorted(pilotos, key=lambda piloto: piloto.puntuacion, reverse=True)
+
+                print("\nTop 10 Pilotos con más puntos en el campeonato:")
+                for i, piloto in enumerate(sorted_pilotos[:10]):
+                    print(f"{i + 1}. {piloto.nombre} - Puntuación: {piloto.puntuacion}")
+
+            if opcion == "2":
+                equipos = [equipo for equipo in self._lista_equipos]
+                sorted_equipos = sorted(equipos, key=lambda equipo: equipo.puntuacion, reverse=True)
+
+                print("\nPuntuación de Equipos en el campeonato:")
+                for i, equipo in enumerate(sorted_equipos):
+                    print(f"{i + 1}. {equipo.nombre} - Puntuación: {equipo.puntuacion}")
+            
+            if opcion == "3":
+                pilotos = [empleado for empleado in self._lista_empleados if isinstance(empleado, Piloto)]
+                sorted_pilotos = sorted(pilotos, key=lambda piloto: piloto.salario, reverse=True)
+
+                print("\nTop 5 Pilotos con el salario más alto:")
+                for i, piloto in enumerate(sorted_pilotos[:5]):
+                    print(f"{i + 1}. {piloto.nombre} - Salario: {piloto.salario}")
+            
+            if opcion == "4":
+                pilotos = [empleado for empleado in self._lista_empleados if isinstance(empleado, Piloto)]
+                sorted_pilotos = sorted(pilotos, key=lambda piloto: piloto.score, reverse=True)
+
+                print("\nTop 3 Pilotos con el score más alto:")
+                for i, piloto in enumerate(sorted_pilotos[:3]):
+                    print(f"{i + 1}. {piloto.nombre} - Score: {piloto.score}")
+            
+            if opcion == "5":
+                directores = [empleado for empleado in self._lista_empleados if isinstance(empleado, Director_equipo)]
+
+                print("\nEquipos empleados por Directores de Equipo:")
+                for director in directores:
+                    equipo_asociado = ""
+                    for equipo in self._lista_equipos:
+                        if director in equipo.empleados:
+                            equipo_asociado = equipo
+                
+                    if equipo_asociado:
+                        print(f"{director.nombre} - Equipo: {equipo_asociado.nombre}")
+                    else:
+                        print(f"{director.nombre} - No tiene equipo asociado")
+
+            if opcion == "6":
+                break
+    
+
+
         
         
+
+        
+
+
 
 
     
