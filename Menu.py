@@ -378,7 +378,7 @@ class Menu():
                     
                 lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0], reverse=True) #lleno la lista con la forma ordenada descendente de las tuplas a partir del score_final
                 
-                for score, piloto in lista_ganadores:
+                for piloto in lista_ganadores:
                     if piloto == lista_ganadores[0][1]:
                         puntuacion_posicion = 25
                     elif piloto == lista_ganadores[1][1]:
@@ -404,7 +404,11 @@ class Menu():
 
                     puntaje = piloto.puntuacion + puntuacion_posicion
                     piloto.puntuacion = puntaje
-
+                    
+                    for equipo in self._lista_equipos:
+                        if piloto in equipo.empleados:
+                            equipo_puntaje= equipo.puntuacion + puntuacion_posicion
+                            equipo.puntuacion = equipo_puntaje
 
                 
                 position = 0
