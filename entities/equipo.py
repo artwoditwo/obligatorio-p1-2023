@@ -3,7 +3,7 @@ class Equipo:
         self._nombre = nombre
         self._empleados = empleados
         self._auto = auto
-        self._puntuacion = None
+        self._puntuacion = 0
 
     
     @property

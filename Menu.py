@@ -319,11 +319,12 @@ class Menu():
                     for b in a.empleados: # a seria el equipo y b seria cada empleado dentro de ese equipo
                         if isinstance(b,Piloto): #ver que sea piloto
                             if b.reserva == False: #ver que sea titular
-                                if b in nro_auto_pilotos_lesionados: #ver que no este lesionado
+                                if b.numero_auto in nro_auto_pilotos_lesionados: #ver que no este lesionado
                                     for c in a.empleados: #c cumple la misma funcion que b
-                                        if c.reserva==True: #agarrar al que sea reserva
-                                            if c not in corredores: #esto para fijarme que la reserva no se encuentra ya en carrera en caso de que los dos titulares esten lesionados
-                                                corredores.append(c)
+                                        if isinstance(c,Piloto):
+                                            if c.reserva==True: #agarrar al que sea reserva
+                                                if c not in corredores: #esto para fijarme que la reserva no se encuentra ya en carrera en caso de que los dos titulares esten lesionados
+                                                    corredores.append(c)
                                             
                                                 
 
@@ -378,32 +379,31 @@ class Menu():
                     
                 lista_ganadores=sorted(corredores_con_puntuacion_final, key=lambda x: x[0], reverse=True) #lleno la lista con la forma ordenada descendente de las tuplas a partir del score_final
                 
-                for piloto in lista_ganadores:
-                    if piloto == lista_ganadores[0][1]:
+                for index, (score_final, piloto) in enumerate(lista_ganadores):
+                    if index == 0:
                         puntuacion_posicion = 25
-                    elif piloto == lista_ganadores[1][1]:
+                    elif index == 1:
                         puntuacion_posicion = 18
-                    elif piloto == lista_ganadores[2][1]:
+                    elif index == 2:
                         puntuacion_posicion = 15
-                    elif piloto == lista_ganadores[3][1]:
+                    elif index == 3:
                         puntuacion_posicion = 12
-                    elif piloto == lista_ganadores[4][1]:
+                    elif index == 4:
                         puntuacion_posicion = 10
-                    elif piloto == lista_ganadores[5][1]:
+                    elif index == 5:
                         puntuacion_posicion = 8
-                    elif piloto == lista_ganadores[6][1]:
+                    elif index == 6:
                         puntuacion_posicion = 6
-                    elif piloto == lista_ganadores[7][1]:
+                    elif index == 7:
                         puntuacion_posicion = 4
-                    elif piloto == lista_ganadores[8][1]:
+                    elif index == 8:
                         puntuacion_posicion = 2
-                    elif piloto == lista_ganadores[9][1]:
+                    elif index == 9:
                         puntuacion_posicion = 1
                     else:
                         puntuacion_posicion = 0
 
-                    puntaje = piloto.puntuacion + puntuacion_posicion
-                    piloto.puntuacion = puntaje
+                    piloto.puntuacion = piloto.puntuacion + puntuacion_posicion
                     
                     for equipo in self._lista_equipos:
                         if piloto in equipo.empleados:
