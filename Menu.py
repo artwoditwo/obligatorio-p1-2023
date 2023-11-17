@@ -508,32 +508,32 @@ class Menu():
 ######################### NO TOCAR ########################
     def ejecutar_menu(self):
             # Creating 12 employees for testing
-        employee1 = Piloto("11111111", "Piloto1", 25, "01/01/1998", "Nacionalidad1", 50000, 90, 1, False)
-        employee2 = Piloto("22222222", "Piloto2", 28, "02/02/1995", "Nacionalidad2", 55000, 85, 2, False)
-        employee3 = Piloto("33333333", "Piloto3", 22, "03/03/2000", "Nacionalidad3", 60000, 88, 3, True)
-        employee4 = Director_equipo("44444444", "Jefe1", 35, "04/04/1987", "Nacionalidad4", 70000)
-        employee5 = Mecanico("55555555", "Mecánico1", 30, "05/05/1992", "Nacionalidad5", 40000, 75)
-        employee6 = Mecanico("66666666", "Mecánico2", 26, "06/06/1996", "Nacionalidad6", 45000, 78)
-        employee7 = Mecanico("77777777", "Mecánico3", 29, "07/07/1993", "Nacionalidad7", 42000, 80)
-        employee8 = Mecanico("88888888", "Mecánico4", 32, "08/08/1990", "Nacionalidad8", 48000, 82)
-        employee9 = Mecanico("99999999", "Mecánico5", 28, "09/09/1994", "Nacionalidad9", 43000, 79)
-        employee10 = Mecanico("10101010", "Mecánico6", 25, "10/10/1997", "Nacionalidad10", 41000, 76)
-        employee11 = Mecanico("11111112", "Mecánico7", 27, "11/11/1995", "Nacionalidad11", 44000, 77)
-        employee12 = Mecanico("12121212", "Mecánico8", 31, "12/12/1989", "Nacionalidad12", 46000, 81)
+        # employee1 = Piloto("11111111", "Piloto1", 25, "01/01/1998", "Nacionalidad1", 50000, 90, 1, False)
+        # employee2 = Piloto("22222222", "Piloto2", 28, "02/02/1995", "Nacionalidad2", 55000, 85, 2, False)
+        # employee3 = Piloto("33333333", "Piloto3", 22, "03/03/2000", "Nacionalidad3", 60000, 88, 3, True)
+        # employee4 = Director_equipo("44444444", "Jefe1", 35, "04/04/1987", "Nacionalidad4", 70000)
+        # employee5 = Mecanico("55555555", "Mecánico1", 30, "05/05/1992", "Nacionalidad5", 40000, 75)
+        # employee6 = Mecanico("66666666", "Mecánico2", 26, "06/06/1996", "Nacionalidad6", 45000, 78)
+        # employee7 = Mecanico("77777777", "Mecánico3", 29, "07/07/1993", "Nacionalidad7", 42000, 80)
+        # employee8 = Mecanico("88888888", "Mecánico4", 32, "08/08/1990", "Nacionalidad8", 48000, 82)
+        # employee9 = Mecanico("99999999", "Mecánico5", 28, "09/09/1994", "Nacionalidad9", 43000, 79)
+        # employee10 = Mecanico("10101010", "Mecánico6", 25, "10/10/1997", "Nacionalidad10", 41000, 76)
+        # employee11 = Mecanico("11111112", "Mecánico7", 27, "11/11/1995", "Nacionalidad11", 44000, 77)
+        # employee12 = Mecanico("12121212", "Mecánico8", 31, "12/12/1989", "Nacionalidad12", 46000, 81)
 
-        # Adding employees to the menu
+        # # Adding employees to the menu
         
-        self._lista_empleados.extend([employee1, employee2, employee3, employee4, employee5, employee6,
-                                    employee7, employee8, employee9, employee10, employee11, employee12])
-        #auto for test
-        auto = Auto("ferrari",1234,55)
-        self._lista_auto.append(auto)
-        # equipo for test
-        lista_empleados=[employee1,employee2,employee3,employee4,employee5,employee6,employee7,
-                         employee8,employee9,employee10,employee11,employee12]
+        # self._lista_empleados.extend([employee1, employee2, employee3, employee4, employee5, employee6,
+        #                             employee7, employee8, employee9, employee10, employee11, employee12])
+        # #auto for test
+        # auto = Auto("ferrari",1234,55)
+        # self._lista_auto.append(auto)
+        # # equipo for test
+        # lista_empleados=[employee1,employee2,employee3,employee4,employee5,employee6,employee7,
+        #                  employee8,employee9,employee10,employee11,employee12]
         
-        equipo=Equipo("Arturo",lista_empleados,"ferrari")
-        self._lista_equipos.append(equipo)
+        # equipo=Equipo("Arturo",lista_empleados,"ferrari")
+        # self._lista_equipos.append(equipo)
 
 
 
